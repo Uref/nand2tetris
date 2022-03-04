@@ -14,5 +14,55 @@ CHIP Register {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    Bit(in=in[0], load=load, out=out[0]);
+    Bit(in=in[1], load=load, out=out[1]);
+    Bit(in=in[2], load=load, out=out[2]);
+    Bit(in=in[3], load=load, out=out[3]);
+    Bit(in=in[4], load=load, out=out[4]);
+    Bit(in=in[5], load=load, out=out[5]);
+    Bit(in=in[6], load=load, out=out[6]);
+    Bit(in=in[7], load=load, out=out[7]);
+    Bit(in=in[8], load=load, out=out[8]);
+    Bit(in=in[9], load=load, out=out[9]);
+    Bit(in=in[10], load=load, out=out[10]);
+    Bit(in=in[11], load=load, out=out[11]);
+    Bit(in=in[12], load=load, out=out[12]);
+    Bit(in=in[13], load=load, out=out[13]);
+    Bit(in=in[14], load=load, out=out[14]);
+    Bit(in=in[15], load=load, out=out[15]);
+
+    // Mux(a=loop0, b=in[0], sel=load, out=w0);
+    // Mux(a=loop1, b=in[1], sel=load, out=w1);
+    // Mux(a=loop2, b=in[2], sel=load, out=w2);
+    // Mux(a=loop3, b=in[3], sel=load, out=w3);
+    // Mux(a=loop4, b=in[4], sel=load, out=w4);
+    // Mux(a=loop5, b=in[5], sel=load, out=w5);
+    // Mux(a=loop6, b=in[6], sel=load, out=w6);
+    // Mux(a=loop7, b=in[7], sel=load, out=w7);
+    // Mux(a=loop8, b=in[8], sel=load, out=w8);
+    // Mux(a=loop9, b=in[9], sel=load, out=w9);
+    // Mux(a=loop10, b=in[10], sel=load, out=w10);
+    // Mux(a=loop11, b=in[11], sel=load, out=w11);
+    // Mux(a=loop12, b=in[12], sel=load, out=w12);
+    // Mux(a=loop13, b=in[13], sel=load, out=w13);
+    // Mux(a=loop14, b=in[14], sel=load, out=w14);
+    // Mux(a=loop15, b=in[15], sel=load, out=w15);
+
+    // DFF(in=w0, out=out[0], out=loop0);
+    // DFF(in=w1, out=out[1], out=loop1);
+    // DFF(in=w2, out=out[2], out=loop2);
+    // DFF(in=w3, out=out[3], out=loop3);
+    // DFF(in=w4, out=out[4], out=loop4);
+    // DFF(in=w5, out=out[5], out=loop5);
+    // DFF(in=w6, out=out[6], out=loop6);
+    // DFF(in=w7, out=out[7], out=loop7);
+    // DFF(in=w8, out=out[8], out=loop8);
+    // DFF(in=w9, out=out[9], out=loop9);
+    // DFF(in=w10, out=out[10], out=loop10);
+    // DFF(in=w11, out=out[11], out=loop11);
+    // DFF(in=w12, out=out[12], out=loop12);
+    // DFF(in=w13, out=out[13], out=loop13);
+    // DFF(in=w14, out=out[14], out=loop14);
+    // DFF(in=w15, out=out[15], out=loop15);
+
 }
