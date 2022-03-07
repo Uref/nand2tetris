@@ -56,7 +56,7 @@
     D;JLT
     @SCREEN
     A=A+D
-    M=-1
+    M=-1  // 0b1111111111111111
     @i
     MD=M+1
     @FILL_SCREEN_LOOP
