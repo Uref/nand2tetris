@@ -39,5 +39,79 @@ CHIP CPU {
         pc[15];          // address of next instruction
 
     PARTS:
-    // Put your code here:
+        And (a=instruction[3], b=instruction[15], out=writeM);
+
+        And (a=instruction[4], b=instruction[15], out=loadD);
+
+        Not (in=instruction[15], out=noti15);
+        Or (a=instruction[5], b=noti15, out=loadA);
+
+        Mux16 (a=instruction, b=aluout, sel=instruction[15], out=mux0out);
+        ARegister (in=mux0out, load=loadA, out=aout, out[0..14]=addressM);
+        PC (in=aout, load=loadPC, inc=true, reset=reset, out[0..14]=pc);
+        Mux16 (a=aout, b=inM, sel=instruction[12], out=mux1out);
+        DRegister (in=mux0out, load=loadD, out=dout);
+
+        ALU (
+            x=dout,
+            y=mux1out,
+            zx=instruction[11],
+            nx=instruction[10],
+            zy=instruction[9],
+            ny=instruction[8],
+            f=instruction[7],
+            no=instruction[6],
+            out=aluout,
+            out=outM,
+            zr=zr,
+            ng=ng
+            );
+
+        // Judge of jump
+        Not (in=zr, out=notzr);
+        Not (in=ng, out=notng);
+        And (a=instruction[2], b=ng, out=w1);
+        And (a=instruction[0], b=notng, out=w2);
+        Or (a=w1, b=w2, out=w3);
+        And (a=notzr, b=w3, out=w4);
+        And (a=instruction[1], b=zr, out=w5);
+        Or (a=w4, b=w5, out=w6);
+        And (a=instruction[15], b=w6, out=loadPC);
+
+
+    // Not(in=instruction[15], out=noti15);
+    // Or(a=instruction[5], b=noti15, out=loadA);
+    // And(a=instruction[4], b=instruction[15], out=loadD);
+    // And(a=instruction[3], b=instruction[15], out=writeM);
+
+    // Mux16(a=instruction, b=w5, sel=instruction[15], out=w1);
+    // ARegister(in=w1, load=instruction[5], out=w2, out[0..14]=addressM);
+    // Mux16(a=w2, b=inM, sel=instruction[12], out=w3);
+    // ALU(x=w4, 
+    //     y=w3, 
+    //     zx=instruction[11], 
+    //     nx=instruction[10], 
+    //     zy=instruction[9], 
+    //     ny=instruction[8], 
+    //     f=instruction[7], 
+    //     no=instruction[6], 
+    //     out=w5, 
+    //     out=outM,
+    //     zr=zr, 
+    //     ng=ng);
+    // DRegister(in=w5, load=instruction[4], out=w4);
+
+    
+    // // make load bit
+    // Not(in=ng, out=nng);
+    // And(a=instruction[2], b=ng, out=w7);
+    // And(a=instruction[1], b=zr, out=w8);
+    // And(a=instruction[0], b=nng, out=w9);
+    // Or(a=w7, b=w8, out=w10);
+    // Or(a=w9, b=w10, out=w11);
+    // And(a=w11, b=instruction[15], out=loadPC);
+
+    // PC(in=w2, load=loadPC, inc=true, reset=reset, out[0..14]=pc);
+
+
 }
